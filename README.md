@@ -4,10 +4,9 @@ To investigate:
 - Dynamic loading
 - Separate costs of various parallel parts
 - Weak scaling
-  - 2D, fixed # of steps
-  - 3D, fixed # of steps
-  - 2D, adaptive stepping
-  - 3D, adaptive stepping
+  - 2D/3D
+  - fixed # of steps/adaptive stepping
+  - Classic/SharpClaw solvers (and influence of larger WENO stencils)
 - Strong scaling
   - All the same as above
 - Single-node efficiency?
