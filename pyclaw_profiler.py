@@ -88,7 +88,7 @@ def extract_profile(ndim,solver_type,nvals,process_rank,ncells,base_dir):
     calc_ncells = (ncells==-1)
 
     for n in nvals:
-        nprocs.append(str(n))
+        nprocs.append(n)
         if calc_ncells:
             ncells = int(96 * cbrt(n/4))
         ngrids.append(math.pow(ncells, ndim))
@@ -128,7 +128,7 @@ def extract_results(ncells,ndim,solver_type,nval,process_rank,base_dir):
 
     return 0
 
-def plot_and_table(ndim=3,solver_type='classic',nvals=(16,),process_rank=0,ncells=-1,log_scale=False,base_dir='weak-scaling'):
+def plot_and_table(ndim=3,solver_type='classic',nvals=(16,),process_rank=0,ncells=-1,log_scale=False,base_dir='weak-scaling',show_gridsize=False):
     nprocs, ngrids, times = extract_profile(ndim,solver_type,nvals,process_rank,ncells,base_dir)
 
     rows = ['Concurrent computations',
@@ -146,7 +146,7 @@ def plot_and_table(ndim=3,solver_type='classic',nvals=(16,),process_rank=0,ncell
     bar_width = 0.4
     yoff = np.array([0.0] * len(nprocs)) # the bottom values for stacked bar chart
 
-    plt.axes([0.35, 0.29, 0.55, 0.35])   # leave room below the axes for the table
+    plt.axes([0.35, 0.31, 0.55, 0.35])   # leave room below the axes for the table
 
     for irow,row in enumerate(rows):
         #print row + ': ' + str(times[row]) + '\n'
@@ -170,6 +170,12 @@ def plot_and_table(ndim=3,solver_type='classic',nvals=(16,),process_rank=0,ncell
     table_data[-1] = [round(x,2) for x in table_data[-1]]
     rows.append('Parallel efficiency')
     colours.append([1,1,1])
+
+    if show_gridsize:
+        # Add grid size
+        table_data.append((np.power(ngrids, 1.0/ndim)/np.power(np.array([proc/nprocs[0] for proc in nprocs]), 1.0/ndim)))
+        rows.append('Grid size (cubic root)')
+        colours.append([1,1,1])
 
     # Add a table at the bottom of the axes
     mytable = plt.table(cellText=table_data,
