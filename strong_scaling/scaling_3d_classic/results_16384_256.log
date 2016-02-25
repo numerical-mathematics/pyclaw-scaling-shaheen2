@@ -1,0 +1,23 @@
+classic 
+clawrun + load took 5.23238897324 seconds, for process 0
+clawrun took 5.23227405548 seconds, for process 0 in grid 256
+number of steps: 116
+time reduction time 0.000142097473145
+tfinal 0.1 and dt 0.00066775477125
+================================
+classic 
+clawrun + load took 2.24823713303 seconds, for process 0
+clawrun took 2.24814605713 seconds, for process 0 in grid 256
+number of steps: 116
+time reduction time 8.29696655273e-05
+tfinal 0.1 and dt 0.00066775477125
+================================
+classic 
+clawrun + load took 18.9370880127 seconds, for process 0
+clawrun took 18.9370090961 seconds, for process 0 in grid 256
+number of steps: 240
+time reduction time 0.000133037567139
+tfinal 0.1 and dt 0.000527500243916
+================================
+Total time : 142.854130983
+Python dynamic loading: 119.194267988
